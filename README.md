@@ -1,4 +1,4 @@
-# Cricket net
+# cricket net
 
 Model of the song recognition network in _Gryllus bimaculatus_.
 
