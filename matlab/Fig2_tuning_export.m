@@ -1,5 +1,6 @@
-cc()
 addpath(genpath('src'))
+addpath(genpath('model'))
+cc()
 objFunParam.modelDate = '20210125_DN_gauss';
 disp('running model')
 run_model()
@@ -22,13 +23,13 @@ data_full = ds.readall();
 data = {};
 for ii = 1:length(data_full)
    try
-      data{ii}.tuneX = data_full{ii}.tuneX; 
-      data{ii}.tuneY = data_full{ii}.tuneY; 
-      data{ii}.file = ds.Files{ii}; 
+      data{ii}.tuneX = data_full{ii}.tuneX;
+      data{ii}.tuneY = data_full{ii}.tuneY;
+      data{ii}.file = ds.Files{ii};
    catch
-      data{ii}.tuneX = 0; 
+      data{ii}.tuneX = 0;
       data{ii}.tuneY = 0;
-      data{ii}.file = ds.Files{ii}; 
+      data{ii}.file = ds.Files{ii};
    end
 end
 files = ds.Files;
@@ -49,13 +50,13 @@ for cel = 1:length(uniCellTypes)
    thisCellIdx = find(contains(ds.Files, uniCellTypes{cel}));
    disp(ds.Files(thisCellIdx))
    cols = lines(length(thisCellIdx));
-      
+
    for typ = 1:3%length(fieldNames)
       for idx = 1:length(thisCellIdx)
          % get global norm constant
          c = struct2cell(data{thisCellIdx(idx)}.tuneY);
          cellMax = nanmax(vertcat(c{:}));
-         
+
          mySubPlot(length(uniCellTypes), 3, cel, typ)
          hold on;
          X = data{thisCellIdx(idx)}.tuneX.(fieldNames{typ});

@@ -1,4 +1,5 @@
 addpath(genpath('src'))
+addpath(genpath('model'))
 cc()
 objFunParam.modelDate = '20210125_DN_gauss';
 disp('running model')
@@ -21,13 +22,13 @@ for cel = 1:length(uniCellTypes)
    thisCellIdx = find(contains(files, uniCellTypes{cel}));
    disp(files(thisCellIdx))
    cols = lines(length(thisCellIdx));
-      
+
    for typ = 1:3
       for idx = 1:length(thisCellIdx)
          % get global norm constant
          c = struct2cell(data{thisCellIdx(idx)}.tuneY);
          cellMax = nanmax(vertcat(c{:}));
-         
+
          mySubPlot(length(uniCellTypes), 3, cel, typ)
          hold on;
          X = data{thisCellIdx(idx)}.tuneX.(fieldNames{typ});
@@ -51,7 +52,7 @@ for cel = 1:length(uniCellTypes)
          Yallresp = normalizeMax(response_tuning(:,cel));
          idx = typCuts(typ)+1:typCuts(typ+1);
          X = data2.X{cel,typ}';
-         
+
          mySubPlot(length(uniCellTypes), 3, cel, typ)
          hold on
          plot(X, Yallpred(idx)','-k', 'LineWidth', 2);

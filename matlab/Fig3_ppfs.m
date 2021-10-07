@@ -1,6 +1,6 @@
 addpath(genpath('src'))
-cc()
 addpath(genpath('model'))
+cc()
 cellNames = {'AN1', 'LN2', 'LN5', 'LN3', 'LN4'}';
 %% make PPF stims
 [input, s, ppau, pdur, allStim, paramPau, paramDur] = makePPFstim2('ppauMax', 80,'cdur', 140, 'cpau', 200);

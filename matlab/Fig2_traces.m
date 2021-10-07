@@ -1,4 +1,5 @@
 addpath(genpath('src'))
+addpath(genpath('model'))
 cc()
 objFunParam.modelDate = '20210125_DN_gauss';
 run_model()
@@ -26,7 +27,7 @@ for stiset = 1:length(stimSets)
       for cel = 1:cels
          pred = prediction_traces{cel}(1:350, stiAll(sti));
          resp = response_traces(1:350, stiAll(sti), cel);
-         
+
          subplot(cels+1, 1, cel+1)
          hold on
          plot(T, pred,'k');
